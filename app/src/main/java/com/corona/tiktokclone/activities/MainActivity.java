@@ -1,8 +1,17 @@
 package com.corona.tiktokclone.activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.VideoView;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,10 +21,9 @@ import androidx.recyclerview.widget.SnapHelper;
 
 import com.corona.tiktokclone.AppController;
 import com.corona.tiktokclone.R;
-import com.corona.tiktokclone.adapter.RecyclerAdapter;
+import com.corona.tiktokclone.adapter.VideoAdapter;
 import com.corona.tiktokclone.base.BaseActivity;
 import com.corona.tiktokclone.firebase.FirebaseSource;
-import com.corona.tiktokclone.firebase.FirebaseStorageSource;
 import com.corona.tiktokclone.firebase.Interfaces;
 import com.corona.tiktokclone.manager.PermissionManager;
 import com.corona.tiktokclone.utils.KEYS;
@@ -28,57 +36,86 @@ public class MainActivity extends BaseActivity implements Interfaces.OnGetUpload
     private FirebaseSource firebaseSource = AppController.getInstance().getFirebaseSource();
     private PermissionManager permissionManager = AppController.getInstance().getPermissionManager();
 
-    private RecyclerView recyclerView;
-
-    private ArrayList<String> urlData;
-    private RecyclerAdapter adapter;
-
     private Button button;
+    private LinearLayout videoViewLayout;
+    private RelativeLayout mainLayout;
+
+    private ArrayList<String> urls;
+    private RecyclerView recyclerView;
+    private VideoAdapter adapter;
+    private LinearLayoutManager linearLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        urlData =  new ArrayList<>();
-        recyclerView = findViewById(R.id.rx);
-        button = findViewById(R.id.record_new_video);
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        manager.setOrientation(RecyclerView.VERTICAL);
-        recyclerView.setLayoutManager(manager);
-        adapter = new RecyclerAdapter(urlData, MainActivity.this);
-        recyclerView.setAdapter(adapter);
-        SnapHelper mSnapHelper = new PagerSnapHelper();
-        mSnapHelper.attachToRecyclerView(recyclerView);
+        init();
         permissionManager.cameraAndStoragePermission(this);
 
-        if(isNetworkAvailable()) {
+        if (isNetworkAvailable()) {
             showProgressDialog("Loading...");
             firebaseSource.getUploadedVideos(this);
         }
-
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(adapter);
+        SnapHelper mSnapHelper = new PagerSnapHelper();
+        mSnapHelper.attachToRecyclerView(recyclerView);
         button.setOnClickListener(v -> actionIntent());
     }
 
+    private void init() {
+        videoViewLayout = findViewById(R.id.videoViewLayout);
+        button = findViewById(R.id.record_new_video);
+        mainLayout= findViewById(R.id.mainLayut);
+        recyclerView = findViewById(R.id.recyclerView);
+        linearLayoutManager = new LinearLayoutManager(this);
+        urls = new ArrayList<>();
+        adapter = new VideoAdapter(this,urls);
+
+    }
+
     private void actionIntent() {
-        Intent intent = new Intent(this,CameraActivity.class);
+        Intent intent = new Intent(this, CameraActivity.class);
         startActivityForResult(intent, KEYS.UPLOAD_NEW_VIDEO);
     }
 
-    @Override
-    public void onGetUrls(List<String> urls) {
-        hideProgressDialog();
-        urlData.addAll(urls);
-        adapter.notifyDataSetChanged();
+
+    private void setVideoLayout(List<String> urls) {
+
+        for (String url: urls) {
+            View view = getLayoutInflater().inflate(R.layout.video_layout,null);
+            ProgressBar progressBar = view.findViewById(R.id.progressBar);
+            VideoView videoView = view.findViewById(R.id.videoView);
+            videoView.setVideoURI(Uri.parse(url));
+            videoView.setOnPreparedListener(mp -> {
+                progressBar.setVisibility(View.GONE);
+                videoView.requestFocus();
+                videoView.start();
+            });
+            videoViewLayout.addView(view);
+        }
 
     }
+
+    @Override
+    public void onGetUrls(List<String> url) {
+        hideProgressDialog();
+        urls.clear();
+        urls.addAll(url);
+        adapter.notifyDataSetChanged();
+       // setVideoLayout(urls);
+
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == KEYS.UPLOAD_NEW_VIDEO && resultCode == RESULT_OK) {
+        if (requestCode == KEYS.UPLOAD_NEW_VIDEO && resultCode == RESULT_OK) {
             showProgressDialog("Updating...");
             firebaseSource.getUploadedVideos(this);
         }
     }
+
 }
