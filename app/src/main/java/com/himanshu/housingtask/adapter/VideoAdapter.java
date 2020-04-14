@@ -1,18 +1,18 @@
-package com.corona.tiktokclone.adapter;
+package com.himanshu.housingtask.adapter;
 
 import android.content.Context;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.corona.tiktokclone.R;
+import com.himanshu.housingtask.R;
 
 import java.util.ArrayList;
 
@@ -47,8 +47,12 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         });
         holder.videoView.setOnClickListener(v -> {
             if(!holder.videoView.isPlaying()) {
-                holder.videoView.start();
-            }else holder.videoView.stopPlayback();
+                showToast("Play Video");
+                holder.videoView.resume();
+            }else {
+                holder.videoView.pause();
+                showToast("Paused Video");
+            }
         });
     }
 
@@ -67,5 +71,8 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
             videoView = itemView.findViewById(R.id.videoView);
             progressBar = itemView.findViewById(R.id.progressBar);
         }
+    }
+    private void showToast(String message) {
+        Toast.makeText(mContext,message,Toast.LENGTH_LONG).show();
     }
 }

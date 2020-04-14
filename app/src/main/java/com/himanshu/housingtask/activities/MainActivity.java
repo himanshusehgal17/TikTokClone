@@ -1,12 +1,9 @@
-package com.corona.tiktokclone.activities;
+package com.himanshu.housingtask.activities;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -19,14 +16,14 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
-import com.corona.tiktokclone.AppController;
-import com.corona.tiktokclone.R;
-import com.corona.tiktokclone.adapter.VideoAdapter;
-import com.corona.tiktokclone.base.BaseActivity;
-import com.corona.tiktokclone.firebase.FirebaseSource;
-import com.corona.tiktokclone.firebase.Interfaces;
-import com.corona.tiktokclone.manager.PermissionManager;
-import com.corona.tiktokclone.utils.KEYS;
+import com.himanshu.housingtask.AppController;
+import com.himanshu.housingtask.R;
+import com.himanshu.housingtask.adapter.VideoAdapter;
+import com.himanshu.housingtask.base.BaseActivity;
+import com.himanshu.housingtask.firebase.FirebaseSource;
+import com.himanshu.housingtask.firebase.Interfaces;
+import com.himanshu.housingtask.manager.PermissionManager;
+import com.himanshu.housingtask.utils.KEYS;
 
 import java.util.ArrayList;
 import java.util.List;

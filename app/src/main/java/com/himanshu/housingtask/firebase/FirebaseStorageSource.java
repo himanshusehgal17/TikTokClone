@@ -1,9 +1,9 @@
-package com.corona.tiktokclone.firebase;
+package com.himanshu.housingtask.firebase;
 
 import android.content.Context;
 import android.net.Uri;
 
-import com.corona.tiktokclone.utils.UtilsFunctions;
+import com.himanshu.housingtask.utils.UtilsFunctions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;

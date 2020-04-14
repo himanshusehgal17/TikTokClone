@@ -1,4 +1,4 @@
-package com.corona.tiktokclone.base;
+package com.himanshu.housingtask.base;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;

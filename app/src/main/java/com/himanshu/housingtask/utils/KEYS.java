@@ -1,4 +1,4 @@
-package com.corona.tiktokclone.utils;
+package com.himanshu.housingtask.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

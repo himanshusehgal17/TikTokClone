@@ -1,4 +1,4 @@
-package com.corona.tiktokclone.manager;
+package com.himanshu.housingtask.manager;
 
 import android.Manifest;
 import android.app.Activity;
@@ -7,7 +7,7 @@ import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.corona.tiktokclone.utils.KEYS;
+import com.himanshu.housingtask.utils.KEYS;
 
 import java.util.ArrayList;
 

@@ -1,11 +1,11 @@
-package com.corona.tiktokclone;
+package com.himanshu.housingtask;
 
 import android.app.Application;
 import android.os.StrictMode;
 
-import com.corona.tiktokclone.firebase.FirebaseSource;
-import com.corona.tiktokclone.firebase.FirebaseStorageSource;
-import com.corona.tiktokclone.manager.PermissionManager;
+import com.himanshu.housingtask.firebase.FirebaseSource;
+import com.himanshu.housingtask.firebase.FirebaseStorageSource;
+import com.himanshu.housingtask.manager.PermissionManager;
 
 public class AppController extends Application {
 

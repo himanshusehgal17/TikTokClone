@@ -1,6 +1,5 @@
-package com.corona.tiktokclone.utils;
+package com.himanshu.housingtask.utils;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
@@ -10,11 +9,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
-import static com.corona.tiktokclone.utils.KEYS.MEDIA_TYPE_VIDEO;
+import static com.himanshu.housingtask.utils.KEYS.MEDIA_TYPE_VIDEO;
 
 public class UtilsFunctions {
 

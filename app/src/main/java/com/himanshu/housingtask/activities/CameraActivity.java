@@ -1,4 +1,4 @@
-package com.corona.tiktokclone.activities;
+package com.himanshu.housingtask.activities;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -12,21 +12,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
-import com.corona.tiktokclone.AppController;
-import com.corona.tiktokclone.R;
-import com.corona.tiktokclone.base.BaseActivity;
-import com.corona.tiktokclone.firebase.FirebaseSource;
-import com.corona.tiktokclone.firebase.FirebaseStorageSource;
-import com.corona.tiktokclone.firebase.Interfaces;
-import com.corona.tiktokclone.manager.PermissionManager;
-import com.corona.tiktokclone.utils.CameraPreview;
-import com.corona.tiktokclone.utils.KEYS;
-import com.corona.tiktokclone.utils.UtilsFunctions;
+import com.himanshu.housingtask.AppController;
+import com.himanshu.housingtask.R;
+import com.himanshu.housingtask.base.BaseActivity;
+import com.himanshu.housingtask.firebase.FirebaseSource;
+import com.himanshu.housingtask.firebase.FirebaseStorageSource;
+import com.himanshu.housingtask.firebase.Interfaces;
+import com.himanshu.housingtask.manager.PermissionManager;
+import com.himanshu.housingtask.utils.CameraPreview;
+import com.himanshu.housingtask.utils.KEYS;
+import com.himanshu.housingtask.utils.UtilsFunctions;
 
 import java.io.IOException;
 import java.util.Objects;
 
-import static com.corona.tiktokclone.utils.KEYS.MEDIA_TYPE_VIDEO;
+import static com.himanshu.housingtask.utils.KEYS.MEDIA_TYPE_VIDEO;
 
 @SuppressLint("Registered")
 public class CameraActivity extends BaseActivity {
